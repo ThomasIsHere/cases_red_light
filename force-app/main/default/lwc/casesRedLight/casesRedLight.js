@@ -18,7 +18,10 @@ export default class CasesRedLight extends LightningElement {
     @wire(getOpenCasesWithOpenedSinceDays)
     wiredGetOpenCasesWithOpenedSinceDays({ error, data }) {
         if (data) {
-            this.mapCasesAlertColors = data;
+            this.mapCasesAlertColors = [];
+            for (let key of Object.keys(data)) {
+                this.mapCasesAlertColors.push({ key: key, value: data[key] });
+            }
         } else if (error) {
             console.error(error);
         }

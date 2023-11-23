@@ -1,5 +1,31 @@
 <template>
-    <h1>Cases Red Light</h1>
-    <h2>Number of cases: {totalCases}</h2>
-    <h2>{mapCasesAlertColors}</h2>
+    <lightning-card title="Case Redlight Counter">
+        <div class="slds-m-around_medium">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Level">Level</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Cases">Cases</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={mapCasesAlertColors} for:item="mapCase">
+                        <tr key={mapCase.key}>
+                            <!--p key={mapCase.key}>{mapCase.key} - {mapCase.value}</p-->
+                            <td data-label="Level">
+                                <div class="slds-truncate" title={mapCase.key}>{mapCase.key}</div>
+                            </td>
+                            <td data-label="Cases">
+                                <div class="slds-truncate" title={mapCase.value}>{mapCase.value}</div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
 </template>
