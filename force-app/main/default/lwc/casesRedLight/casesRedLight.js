@@ -1,8 +1,13 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
+
 import countTotalCases from '@salesforce/apex/CaseRedLightController.countTotalCases';
 import getOpenCasesWithOpenedSinceDays from '@salesforce/apex/CaseRedLightController.getOpenCasesWithOpenedSinceDays';
 
 export default class CasesRedLight extends LightningElement {
+    @api greenLimit;
+    @api orangeLimit;
+    @api redLimit;
+
     totalCases;
     mapCasesAlertColors;
 

@@ -6,6 +6,12 @@
         <target>lightning__AppPage</target>
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
-        <target>lightning__ForecastingPage</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
+            <property name="greenLimit" label="Green Alert" description="Days for the green alert" type="Integer" required="true"/>
+            <property name="orangeLimit" label="Orange Alert" description="Days for the orange alert" type="Integer" required="true"/>
+            <property name="redLimit" label="Red Alert" description="Days for the red alert" type="Integer" required="true"/>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>
