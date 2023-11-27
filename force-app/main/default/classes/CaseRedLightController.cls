@@ -4,12 +4,6 @@ public with sharing class CaseRedLightController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Integer countTotalCases() {
-        Integer totalCases = [SELECT COUNT() FROM Case];
-        return totalCases;
-    }
-
-    @AuraEnabled(cacheable=true)
     public static Map<String,Integer> getOpenCasesWithOpenedSinceDays(Integer limit1, Integer limit2) {
         List<Case> openCases = [SELECT Id, Subject, CreatedDate FROM Case WHERE IsClosed = false];
         Integer redCases = 0, orangeCases = 0, greenCases = 0;
