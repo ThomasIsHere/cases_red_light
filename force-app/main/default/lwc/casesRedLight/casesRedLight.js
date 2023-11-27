@@ -10,15 +10,15 @@ export default class CasesRedLight extends LightningElement {
     error;
 
     @wire(getOpenCasesWithOpenedSinceDays, {limit1: '$limitOne', limit2: '$limitTow'})
-    wiredGetOpenCasesWithOpenedSinceDays({error, data}) {
-        this.wiredReponse = {error, data};
-        if (data) {
+    wiredGetOpenCasesWithOpenedSinceDays(response) {
+        this.wiredReponse = response;
+        if (response.data) {
             this.mapCasesAlertColors = [];
-            for (let key of Object.keys(data)) {
-                this.mapCasesAlertColors.push({ key: key, value: data[key] });
+            for (let key of Object.keys(response.data)) {
+                this.mapCasesAlertColors.push({ key: key, value: response.data[key] });
             }
-        } else if (error) {
-            this.error(error);
+        } else if (response.error) {
+            this.error = response.error;
         }
     }
 
