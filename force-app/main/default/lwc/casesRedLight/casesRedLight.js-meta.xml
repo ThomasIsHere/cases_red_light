@@ -9,9 +9,8 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
-            <property name="greenLimit" label="Green Alert" description="Days for the green alert" type="Integer" required="true"/>
-            <property name="orangeLimit" label="Orange Alert" description="Days for the orange alert" type="Integer" required="true"/>
-            <property name="redLimit" label="Red Alert" description="Days for the red alert" type="Integer" required="true"/>
+            <property name="limitOne" label="Limit 1" description="Days for the limit 1" type="Integer" required="true" default="1"/>
+            <property name="limitTow" label="Limit 2" description="Days for the limit 2" type="Integer" required="true" default="2"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

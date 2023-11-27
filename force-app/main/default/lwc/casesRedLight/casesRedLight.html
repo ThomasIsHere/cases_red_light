@@ -13,15 +13,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <template for:each={mapCasesAlertColors} for:item="mapCase">
-                        <tr key={mapCase.key}>
-                            <td data-label="Level">
-                                <div class="slds-truncate" title={mapCase.key}>{mapCase.key}</div>
-                            </td>
-                            <td data-label="Cases">
-                                <div class="slds-truncate" title={mapCase.value}>{mapCase.value}</div>
-                            </td>
-                        </tr>
+                    <template lwc:if={mapCasesAlertColors}>
+                        <template for:each={mapCasesAlertColors} for:item="mapCase">
+                            <tr key={mapCase.key}>
+                                <td data-label="Level">
+                                    <div class="slds-truncate" title={mapCase.key}>{mapCase.key}</div>
+                                </td>
+                                <td data-label="Cases">
+                                    <div class="slds-truncate" title={mapCase.value}>{mapCase.value}</div>
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+                    <template lwc:elseif={error}>
+                        <div class="slds-text-color_error">{error}</div>
+                    </template>
+                    <template lwc:else>
+                        <div class="slds-text-color_default">No open cases.</div>
                     </template>
                 </tbody>
             </table>

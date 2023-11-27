@@ -4,23 +4,23 @@ import countTotalCases from '@salesforce/apex/CaseRedLightController.countTotalC
 import getOpenCasesWithOpenedSinceDays from '@salesforce/apex/CaseRedLightController.getOpenCasesWithOpenedSinceDays';
 
 export default class CasesRedLight extends LightningElement {
-    @api greenLimit;
-    @api orangeLimit;
-    @api redLimit;
+    @api limitOne;
+    @api limitTow;
 
     totalCases;
     mapCasesAlertColors;
+    error;
 
     @wire(countTotalCases)
     wiredTotalCases({ error, data }) {
         if (data) {
             this.totalCases = data;
         } else if (error) {
-            console.error(error);
+            this.error = error;
         }
     }
 
-    @wire(getOpenCasesWithOpenedSinceDays)
+    @wire(getOpenCasesWithOpenedSinceDays, {limit1: '$limitOne', limit2: '$limitTow'})
     wiredGetOpenCasesWithOpenedSinceDays({ error, data }) {
         if (data) {
             this.mapCasesAlertColors = [];
