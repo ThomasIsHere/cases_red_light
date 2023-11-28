@@ -10,6 +10,10 @@ export default class CasesRedLight extends LightningElement {
     error;
     ageDays = '';
 
+    get compareLimitsValues() {
+        return this.limitOne >= this.limitTow;
+    }
+
     @wire(getOpenCasesWithOpenedSinceDays, {limit1: '$limitOne', limit2: '$limitTow'})
     wiredGetOpenCasesWithOpenedSinceDays(response) {
         this.wiredReponse = response;

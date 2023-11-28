@@ -1,39 +1,49 @@
 <template>
     <lightning-card title="Case Redlight Counter">
-        <div class="slds-m-around_medium">
-            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
-                <thead>
-                    <tr class="slds-line-height_reset">
-                        <th scope="col">
-                            <div class="slds-truncate" title="Level">Level</div>
-                        </th>
-                        <th scope="col">
-                            <div class="slds-truncate" title="Cases">Cases</div>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <template lwc:if={mapCasesAlertColors}>
-                        <template for:each={mapCasesAlertColors} for:item="mapCase">
-                            <tr key={mapCase.key}>
-                                <td data-label="Level">
-                                    <div class="slds-truncate" title={mapCase.age}>{mapCase.age}</div>
-                                </td>
-                                <td data-label="Cases">
-                                    <div class={mapCase.key} title={mapCase.value}>{mapCase.value}</div>
-                                </td>
-                            </tr>
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={compareLimitsValues}>
+                <div class="slds-text-color_error">
+                    /!\ ERROR /!\<br>
+                    Limit 1 is greater of equal to Limit 2.<br>
+                    Make sure Limit 1 is strictly inferior to Limit 2.<br>
+                    Change it in the Lightning App Builder.
+                </div>
+            </template>
+            <template lwc:else>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Level">Level</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Cases">Cases</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template lwc:if={mapCasesAlertColors}>
+                            <template for:each={mapCasesAlertColors} for:item="mapCase">
+                                <tr key={mapCase.key}>
+                                    <td data-label="Level">
+                                        <div class="slds-truncate" title={mapCase.age}>{mapCase.age}</div>
+                                    </td>
+                                    <td data-label="Cases">
+                                        <div class={mapCase.key} title={mapCase.value}>{mapCase.value}</div>
+                                    </td>
+                                </tr>
+                            </template>
                         </template>
-                    </template>
-                    <template lwc:elseif={error}>
-                        <div class="slds-text-color_error">{error}</div>
-                    </template>
-                    <template lwc:else>
-                        <div class="slds-text-color_default">No open cases.</div>
-                    </template>
-                </tbody>
-            </table>
-            <lightning-button label="Refresh" onclick={clickRefresh}></lightning-button>
+                        <template lwc:elseif={error}>
+                            <div class="slds-text-color_error">{error}</div>
+                        </template>
+                        <template lwc:else>
+                            <div class="slds-text-color_default">No open cases.</div>
+                        </template>
+                    </tbody>
+                </table>
+                <lightning-button label="Refresh" onclick={clickRefresh}></lightning-button>
+        </template>
         </div>
     </lightning-card>
 </template>
