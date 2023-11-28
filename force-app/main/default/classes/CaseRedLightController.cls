@@ -1,7 +1,4 @@
 public with sharing class CaseRedLightController {
-    public CaseRedLightController() {
-
-    }
 
     @AuraEnabled(cacheable=true)
     public static Map<String,Integer> getOpenCasesWithOpenedSinceDays(Integer limit1, Integer limit2) {
@@ -26,5 +23,12 @@ public with sharing class CaseRedLightController {
         mCasesColors.put('RED', redCases);
         
         return mCasesColors;
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Id raiseRedAlert() {
+        CaseRedLightJob crlj = new CaseRedLightJob();
+        ID jobID = System.enqueueJob(crlj);
+        return jobID;
     }
 }

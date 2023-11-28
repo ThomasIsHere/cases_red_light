@@ -1,6 +1,9 @@
 import { LightningElement, wire, api } from 'lwc';
 import { refreshApex } from '@salesforce/apex';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+
 import getOpenCasesWithOpenedSinceDays from '@salesforce/apex/CaseRedLightController.getOpenCasesWithOpenedSinceDays';
+import raiseRedAlert from '@salesforce/apex/CaseRedLightController.raiseRedAlert';
 
 export default class CasesRedLight extends LightningElement {
     @api limitOne;
@@ -36,5 +39,26 @@ export default class CasesRedLight extends LightningElement {
 
     clickRefresh(){
         refreshApex(this.wiredReponse);
+    }
+
+    clickSendAlertRedCases(){
+        raiseRedAlert()
+        .then(response => {
+            const eventResponse = new ShowToastEvent({
+                title: 'Red Alert OK',
+                message:
+                    'Red alert job id is: ' + response,
+            });
+            this.dispatchEvent(eventResponse);
+        })
+        .catch(error => {
+            console.log(error);
+            const eventError = new ShowToastEvent({
+                title: 'Red Alert KO',
+                message:
+                    'ERROR: ' + error,
+            });
+            this.dispatchEvent(eventError);
+        });
     }
 }
