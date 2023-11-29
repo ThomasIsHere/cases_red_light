@@ -42,7 +42,7 @@ export default class CasesRedLight extends LightningElement {
     }
 
     clickSendAlertRedCases(){
-        raiseRedAlert()
+        raiseRedAlert({ limitTow: this.limitTow })
         .then(response => {
             const eventResponse = new ShowToastEvent({
                 title: 'Red Alert OK',

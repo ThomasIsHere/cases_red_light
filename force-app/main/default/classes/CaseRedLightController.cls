@@ -26,8 +26,8 @@ public with sharing class CaseRedLightController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Id raiseRedAlert() {
-        CaseRedLightJob crlj = new CaseRedLightJob();
+    public static Id raiseRedAlert(Integer limitTow) {
+        CaseRedLightJob crlj = new CaseRedLightJob(limitTow);
         ID jobID = System.enqueueJob(crlj);
         return jobID;
     }
