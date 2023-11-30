@@ -2,6 +2,7 @@
 ## Presentation
 This is a LWC that displays the number of open cases for 3 categories.
 It helps suport team members to spot long time opened cases.
+
 ![Component image](https://github.com/ThomasIsHere/cases_red_light/blob/master/assets/lwc_ui.PNG)
 
 ## Categories
