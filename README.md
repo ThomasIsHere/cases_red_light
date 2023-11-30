@@ -14,9 +14,9 @@ Let's call them A1 and A2 for age 1 and 2 for the explanation bellow.
 * A1 < A2
 
 Those 3 categories are:
-*GREEN: Age <= A1 days
-*ORANGE: A1 days < Age <= A2 days
-*RED: A2 days < Age
+* GREEN: Age <= A1 days
+* ORANGE: A1 days < Age <= A2 days
+* RED: A2 days < Age
 
 ## Action
 Refresh: If the number of open cases has changed click on "Refresh" to update the LWC.
