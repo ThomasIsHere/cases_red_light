@@ -43,7 +43,9 @@
                     </tbody>
                 </table>
                 <lightning-button label="Refresh" onclick={clickRefresh}></lightning-button>
-                <lightning-button label="Red Alert" onclick={clickSendAlertRedCases}></lightning-button>
+                <template lwc:if={redAlertFlag}>
+                    <lightning-button label="Red Alert" onclick={clickSendAlertRedCases}></lightning-button>
+                </template>
         </template>
         </div>
     </lightning-card>

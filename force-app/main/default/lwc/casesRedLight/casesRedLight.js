@@ -8,6 +8,7 @@ import raiseRedAlert from '@salesforce/apex/CaseRedLightController.raiseRedAlert
 export default class CasesRedLight extends LightningElement {
     @api limitOne;
     @api limitTow;
+    @api redAlertFlag;
     mapCasesAlertColors;
     wiredReponse;
     error;
@@ -42,23 +43,25 @@ export default class CasesRedLight extends LightningElement {
     }
 
     clickSendAlertRedCases(){
-        raiseRedAlert({ limitTow: this.limitTow })
-        .then(response => {
-            const eventResponse = new ShowToastEvent({
-                title: 'Red Alert OK',
-                message:
-                    'Red alert job id is: ' + response,
+        if(this.redAlertFlag){
+            raiseRedAlert({ limitTow: this.limitTow })
+            .then(response => {
+                const eventResponse = new ShowToastEvent({
+                    title: 'Red Alert OK',
+                    message:
+                        'Red alert job id is: ' + response,
+                });
+                this.dispatchEvent(eventResponse);
+            })
+            .catch(error => {
+                console.log(error);
+                const eventError = new ShowToastEvent({
+                    title: 'Red Alert KO',
+                    message:
+                        'ERROR: ' + error,
+                });
+                this.dispatchEvent(eventError);
             });
-            this.dispatchEvent(eventResponse);
-        })
-        .catch(error => {
-            console.log(error);
-            const eventError = new ShowToastEvent({
-                title: 'Red Alert KO',
-                message:
-                    'ERROR: ' + error,
-            });
-            this.dispatchEvent(eventError);
-        });
+        }
     }
 }

@@ -18,9 +18,9 @@ Those 3 categories are:
 * ORANGE: A1 days < Age <= A2 days
 * RED: A2 days < Age
 
-## Action
-Refresh: If the number of open cases has changed click on "Refresh" to update the LWC.
-Red Alert: This action execute a queuable apex asyn job to add a FeedItem on each red case.
+## Actions
+* Refresh: If the number of open cases has changed click on "Refresh" to update the LWC.
+* Red Alert: This action execute a queuable apex asyn job to add a FeedItem on each red case, it may enable or disable.
 
 ## Why did I created this LWC
 I like to use Salesforce and as a user and a developper I wanted to have fun coding something on my free time that I could use in my current job.
